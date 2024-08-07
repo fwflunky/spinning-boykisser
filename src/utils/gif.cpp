@@ -12,7 +12,7 @@ bool utils::gif::prepareData() {
         auto const gifReader = EasyGifReader::openMemory(bk_gif, sizeof(bk_gif));
 
         for (const EasyGifReader::Frame &frame : gifReader) {
-            const std::uint32_t *framePixels = frame.pixels();
+            std::uint32_t const* framePixels = frame.pixels();
             std::vector<std::uint32_t> vf = {};
 
             for(int i = 0; i < gifReader.width() * gifReader.height(); i++){

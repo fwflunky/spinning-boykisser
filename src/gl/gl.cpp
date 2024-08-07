@@ -28,7 +28,7 @@ void gl::initImGui() {
     ImGui::CreateContext();
 
     ImGuiIO &io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
     ImGui::StyleColorsDark();
 
@@ -98,7 +98,7 @@ void gl::renderInternal() {
                 if(auto const colorBytes = (unsigned char*) &col; colorBytes[3] != 0x00) { //if pixel is not empty space
                     col = *(std::uint32_t*) &color;
                 }
-                draw_list->AddRectFilled({static_cast<float>(cW), static_cast<float>(cH)}, {1 + static_cast<float>(cW), 1 + static_cast<float>(cH)}, col);
+                draw_list->AddRectFilled({(float) cW, (float) cH}, {1.0f + (float) cW, 1.0f + (float) cH}, col);
             }
         }
     }
