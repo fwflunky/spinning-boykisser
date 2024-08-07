@@ -118,8 +118,8 @@ void gl::tickRGB() {
     }
 }
 
-void gl::nextColor() {
-    if(colorMode++ > 4)
+void gl::nextColor(bool const skip) {
+    if(!skip && colorMode++ > 4)
         colorMode = 0;
 
     switch (colorMode) {

@@ -40,7 +40,9 @@ add_executable(spincat WIN32 main.cpp
         src/gl/gl.h
         src/defines.h
         src/utils/gif.cpp
-        src/utils/gif.h)
+        src/utils/gif.h
+        src/utils/config.cpp
+        src/utils/config.h)
 
 target_sources(spincat PRIVATE src/resource.rc)
 target_link_libraries(spincat PUBLIC opengl32)

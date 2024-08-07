@@ -13,7 +13,9 @@ public:
     static void update();
     static void destroy();
 
-    static void nextColor();
+    static void nextColor(bool skip = false);
+
+    static inline unsigned char colorMode = 4;
 private:
     struct WGL_WindowData {
         HDC hDC;
@@ -25,7 +27,7 @@ private:
     static void tickRGB();
 
     static inline unsigned char color[4] = {0x00, 0x00, 0x00, 0xff}; //black
-    static inline unsigned char colorMode = 4;
+
 
     static inline WGL_WindowData windowData;
     static inline HWND__ *windowHandle = nullptr;

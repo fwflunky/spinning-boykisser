@@ -6,6 +6,7 @@
 #include "../utils/window.h"
 #include "../resource.h"
 #include "../gl/gl.h"
+#include "../utils/config.h"
 
 bool catWindow::init(HINSTANCE__ *const hInstance, int const nCmdShow) {
     WNDCLASS const wc = {
@@ -65,6 +66,12 @@ void catWindow::runAndShow() {
         gl::update();
     });
 
+    utils::config::load();
+
+    MoveWindow(windowHandle, utils::config::getWinX(), utils::config::getWinY(), WIN_X, WIN_Y, false);
+    gl::colorMode = utils::config::getColorMode();
+    gl::nextColor(true);
+
     MSG msg = {};
     while (GetMessage(&msg, nullptr, 0, 0))
     {
@@ -72,6 +79,11 @@ void catWindow::runAndShow() {
         DispatchMessage(&msg);
     }
     KillTimer(windowHandle, 1);
+
+    RECT rect{};
+    GetWindowRect(windowHandle, &rect);
+    utils::config::save(rect.left, rect.top, gl::colorMode);
+
     gl::destroy();
 
     DestroyWindow(windowHandle);
